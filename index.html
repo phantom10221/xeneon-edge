@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080b12">
+  <title>XENEON EDGE Todo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <section class="clock-block" aria-label="目前時間">
+        <div id="clock" class="clock">00:00</div>
+        <div id="seconds" class="seconds">00</div>
+      </section>
+
+      <section class="date-block">
+        <div id="weekday" class="weekday">星期－</div>
+        <div id="date" class="date">0000 / 00 / 00</div>
+      </section>
+
+      <section class="progress-block" aria-label="完成進度">
+        <div class="progress-text">
+          <span>今日進度</span>
+          <strong id="progressLabel">0 / 0</strong>
+        </div>
+        <div class="progress-track">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+      </section>
+    </header>
+
+    <section class="todo-panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">XENEON EDGE</p>
+          <h1>今日待辦</h1>
+        </div>
+
+        <div class="heading-actions">
+          <button id="clearDoneBtn" class="button button-ghost" type="button">
+            清除已完成
+          </button>
+          <button id="addBtn" class="button button-primary" type="button">
+            ＋ 新增待辦
+          </button>
+        </div>
+      </div>
+
+      <div id="todoList" class="todo-list" aria-live="polite"></div>
+
+      <div id="emptyState" class="empty-state" hidden>
+        <div class="empty-icon">✓</div>
+        <p>目前沒有待辦事項</p>
+        <span>點右上角「新增待辦」開始使用</span>
+      </div>
+    </section>
+
+    <footer class="statusbar">
+      <span id="saveStatus">已自動儲存</span>
+      <span>點文字即可修改・拖曳左側圖示可排序</span>
+    </footer>
+  </main>
+
+  <dialog id="taskDialog" class="dialog">
+    <form id="taskForm" method="dialog">
+      <div class="dialog-header">
+        <div>
+          <p class="eyebrow">NEW TASK</p>
+          <h2>新增待辦</h2>
+        </div>
+        <button id="closeDialogBtn" class="icon-button" type="button" aria-label="關閉">×</button>
+      </div>
+
+      <label class="field">
+        <span>待辦內容</span>
+        <input id="taskInput" type="text" maxlength="80" autocomplete="off"
+               placeholder="例如：剪影片、回 Discord、FF14 每日">
+      </label>
+
+      <div class="dialog-actions">
+        <button id="cancelBtn" class="button button-ghost" type="button">取消</button>
+        <button class="button button-primary" type="submit">新增</button>
+      </div>
+    </form>
+  </dialog>
+
+  <template id="todoTemplate">
+    <article class="todo-item" draggable="true">
+      <button class="drag-handle" type="button" aria-label="拖曳排序">⋮⋮</button>
+
+      <label class="check-wrap">
+        <input class="todo-check" type="checkbox">
+        <span class="custom-check"></span>
+      </label>
+
+      <input class="todo-text" type="text" maxlength="80" aria-label="待辦內容">
+
+      <button class="delete-button" type="button" aria-label="刪除待辦">×</button>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
